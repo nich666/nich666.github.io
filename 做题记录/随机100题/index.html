@@ -28,7 +28,7 @@
 <meta property="og:description" content="争取CSP前刷完三分之一">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-22T07:19:04.000Z">
-<meta property="article:modified_time" content="2022-08-27T11:03:20.342Z">
+<meta property="article:modified_time" content="2022-09-14T05:41:02.000Z">
 <meta property="article:author" content="nch">
 <meta property="article:tag" content="做题记录">
 <meta name="twitter:card" content="summary">
@@ -198,7 +198,7 @@
     <link itemprop="mainEntityOfPage" href="http://example.com/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/%E9%9A%8F%E6%9C%BA100%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="image" content="/images/touxiang2.png">
       <meta itemprop="name" content="nch">
       <meta itemprop="description" content="">
     </span>
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-27 19:03:20" itemprop="dateModified" datetime="2022-08-27T19:03:20+08:00">2022-08-27</time>
+                <time title="修改时间：2022-09-14 13:41:02" itemprop="dateModified" datetime="2022-09-14T13:41:02+08:00">2022-09-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,7 +268,7 @@
 
 </details>
 
-<h2 id="3-AT2434-JOI-公园-JOI-Park"><a href="#3-AT2434-JOI-公园-JOI-Park" class="headerlink" title="3.AT2434 JOI 公园 (JOI Park)"></a>3.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT2434">AT2434 JOI 公园 (JOI Park)</a></h2><p>这道题是带有一点模拟性质的最短路，跑dijkstra后将每条边的优先级赋值为更大的点的距离，排序后枚举模拟，注意要换行，不然lj AtCoder会WA</p>
+<h2 id="3-AT2434-JOI-公园-JOI-Park"><a href="#3-AT2434-JOI-公园-JOI-Park" class="headerlink" title="3.AT2434 JOI 公园 (JOI Park)"></a>3.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT2434">AT2434 JOI 公园 (JOI Park)</a></h2><p>这道题是带有一点模拟性质的最短路，跑<code>dijkstra</code>后将每条边的优先级赋值为更大的点的距离，排序后枚举模拟，注意要换行，不然<code>lj AtCoder</code>会<code>WA</code></p>
 <details>
     <summary>AC Code</summary>
 
@@ -429,7 +429,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> n,m;</span><br><span class="line"><span class="type">int</span> aa[<span class="number">2100000</span>],bb[<span class="number">2100000</span>];</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> isdigit(x) ((x)&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;(x)&lt;=<span class="string">&#x27;9&#x27;</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> a=<span class="number">0</span>,flag=<span class="number">1</span>;</span><br><span class="line">    <span class="type">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(c))&#123;</span><br><span class="line">        <span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)flag=<span class="number">-1</span>;</span><br><span class="line">        c=<span class="built_in">getchar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(c))&#123;</span><br><span class="line">        a=(a&lt;&lt;<span class="number">1</span>)+(a&lt;&lt;<span class="number">3</span>)+c<span class="number">-48</span>;</span><br><span class="line">        c=<span class="built_in">getchar</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a*flag;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    n=<span class="built_in">read</span>(),m=<span class="built_in">read</span>();</span><br><span class="line">    <span class="type">int</span> *a=aa+<span class="number">1000000</span>,*b=bb+<span class="number">1000000</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)&#123;</span><br><span class="line">        <span class="type">int</span> v=<span class="built_in">read</span>(),x=<span class="built_in">read</span>();</span><br><span class="line">        a[x<span class="number">-3</span>*v+<span class="number">1</span>]++;</span><br><span class="line">        a[x<span class="number">-2</span>*v+<span class="number">1</span>]-=<span class="number">2</span>;</span><br><span class="line">        a[x+<span class="number">1</span>]+=<span class="number">2</span>;</span><br><span class="line">        a[x+<span class="number">2</span>*v+<span class="number">1</span>]-=<span class="number">2</span>;</span><br><span class="line">        a[x+<span class="number">3</span>*v+<span class="number">1</span>]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">-40000</span>;i&lt;=m+<span class="number">40000</span>;++i)a[i]+=a[i<span class="number">-1</span>],b[i]+=b[i<span class="number">-1</span>]+a[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i)<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,b[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </details>
 
-<h2 id="29-P4868-Preprefix-sum"><a href="#29-P4868-Preprefix-sum" class="headerlink" title="29.P4868 Preprefix sum"></a>29.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4868">P4868 Preprefix sum</a></h2><p>又到了OIer优良传统，<del>丧心病狂</del>的推柿子时间</p>
+<h2 id="29-P4868-Preprefix-sum"><a href="#29-P4868-Preprefix-sum" class="headerlink" title="29.P4868 Preprefix sum"></a>29.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4868">P4868 Preprefix sum</a></h2><p>又到了<code>OIer</code>优良传统，<del>丧心病狂</del>的推柿子时间</p>
 <p>$S_i= {\textstyle \sum_{k=1}^{i}}a_k$</p>
 <p>$SS_i$=$ {\textstyle \sum_{i=1}^{n}}S_i$=$(n+1){\textstyle \sum_{i=1}^{n}}a_i$-${\textstyle \sum_{i=1}^{n}}i*a_i$</p>
 <p>$ps:LaTex真sb$</p>
@@ -528,7 +528,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="nch"
-      src="/images/touxiang.png">
+      src="/images/touxiang2.png">
   <p class="site-author-name" itemprop="name">nch</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -537,20 +537,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -577,7 +577,7 @@
           <a href="http://kevinlive.github.io/" title="http:\\kevinlive.github.io" rel="noopener" target="_blank">_Live_</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://violeteternal.github.io/Eternity/" title="https:&#x2F;&#x2F;violeteternal.github.io&#x2F;Eternity&#x2F;" rel="noopener" target="_blank">_Etrenal_</a>
+          <a href="https://violeteternal.github.io/Eternity/" title="https:&#x2F;&#x2F;violeteternal.github.io&#x2F;Eternity&#x2F;" rel="noopener" target="_blank">_Eternal_</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">dyd本人</a>
