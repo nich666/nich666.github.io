@@ -90,3 +90,98 @@ abstract: 此文已隐藏
 2022.9.19 update：
 
 抱歉，我是sb，初赛过了
+
+---
+title: 数据结构(已弃坑)
+date: 2022-08-23 21:11:45
+tags: 数据结构
+categories: OI
+mathjax: true
+
+---
+
+无话可说
+
+<!--more-->
+
+## 1.队列
+
+#### 1.队列
+
+$队列（queue）$是一种具有「先进入队列的元素一定先出队列」性质的表。由于该性质，队列通常也被称为先进先出$（first in first out）$表，简称$ FIFO$ 表。-- --$OI-wiki$
+
+空间比较紧就手写循环队列，不然在$O2$下$STL$大概和手写差不多
+
+### 例题1.[[NOIP2004 提高组] 合并果子 加强版](https://www.luogu.com.cn/problem/P6033)
+
+这道题数据范围相当大，只能用$O(n)$的算法，我们注意到$a_i$$<=$$1e5$,于是可以先桶排，然后我们用贪心策略，每次取出两个最小的值合并，我们用~~简单的~~证明可以发现合并的值具有单调性，于是我们可以用一个队列存合并的值
+
+<details>
+    <summary>AC Code</summary>
+```cpp
+#include<iostream>
+#include<queue>
+#include<cstdio>
+#define int long long
+using namespace std;
+const int maxm=1e5+5;
+int n,a[maxm];
+long long ans;
+queue<long long>q1,q2;
+inline int read(){ 
+	int x=0;char s=getchar();
+	while(s<'0'||s>'9'){if(s=='-')s=getchar();}
+	while(s>='0'&&s<='9'){x=x*10+s-'0';s=getchar();}
+	return x;
+}
+signed main()
+{
+	n=read();
+	for(int i=1;i<=n;++i)
+	{
+		++a[read()];
+	}
+	for(int i=1;i<=1e5;++i)	while(a[i]) --a[i],q1.push(i);
+	int k,k2;
+	while(--n)
+	{
+		if((!q1.empty()&&q1.front()<=q2.front())||q2.empty())
+		{
+			k=q1.front();
+			q1.pop();
+		}
+		else
+		{
+			k=q2.front();
+			q2.pop();
+		}
+		if((!q1.empty()&&q1.front()<=q2.front())||q2.empty())
+		{
+			k2=q1.front();
+			q1.pop();
+		}
+		else
+		{
+			k2=q2.front();
+			q2.pop();
+		}
+		ans+=k+k2;
+		q2.push(k+k2);
+	}
+	cout<<ans;
+	return 0;
+}
+```
+</details>
+
+
+###  2.优先队列
+
+
+
+
+### 例题2.[P2827 [NOIP2016 提高组] 蚯蚓](https://www.luogu.com.cn/problem/P2827)
+
+
+
+咕咕咕了
